@@ -12,7 +12,7 @@ const port = Number(getEnv('PORT')) || 4000;
 
 //-----------------whole app middleware layer------------------
 
-app.use(appMiddleware);
+appMiddleware(app)
 
 //---------------------------------------------------------------
 
@@ -25,7 +25,6 @@ app.get('/', (req: Request, res: Response) => {
 //---------------------------------------------------------------
 
 app.use(errorHandler);
-
 function serverReadyOrStart() {
   app.listen(port, () => {
     console.log(`server is listen at ${port}`);
