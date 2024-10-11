@@ -17,10 +17,10 @@ const airplaneSchema = new mongoose.Schema<IAirplane>(
     capacity: {
       required: [true, 'An airplane must have fix number of capacity of number'],
       type: Number,
-      maxlength: [4, 'Any plane can not seat exceed the 1000'],
+      max: [1000, 'Any plane can not seat exceed the 1000'],
     },
   },
   { timestamps: true }
 );
 
-export const City = mongoose.model('City', airplaneSchema);
+export const Airplane = mongoose.model('Airplane', airplaneSchema);

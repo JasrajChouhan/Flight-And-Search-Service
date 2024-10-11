@@ -1,9 +1,10 @@
 import mongoose, { ObjectId, Schema } from 'mongoose';
 
-export interface IFlight {
+export interface IFlight extends mongoose.Document {
+  _id: string;
   flightName: string;
   departure: Date;
-  arival: Date;
+  arrival: Date;
   departureCity: ObjectId;
   destinationCity: ObjectId;
   flightNumber: string;
@@ -24,6 +25,7 @@ const flightSchema = new mongoose.Schema<IFlight>(
       type: String,
       unique: true,
       index: true,
+      required: [true, 'Please provide flight number'],
     },
 
     departure: {
@@ -31,23 +33,27 @@ const flightSchema = new mongoose.Schema<IFlight>(
       required: [true, 'Please provide departure date/time'],
     },
 
-    arival: {
+    arrival: {
       type: Date,
       required: [true, 'Please provide arival date/time'],
+      validate: {
+        validator: function (this: IFlight, value: Date) {
+          return value > this.departure;
+        },
+        message: 'Arrival time must be after departure time',
+      },
     },
 
     departureCity: {
       type: Schema.Types.ObjectId,
       ref: 'City',
       required: [true, 'Provide departure city'],
-      trim: true,
     },
 
     destinationCity: {
       type: Schema.Types.ObjectId,
       ref: 'City',
       required: [true, 'Provide destination city'],
-      trim: true,
     },
 
     airplane: {

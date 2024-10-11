@@ -1,6 +1,7 @@
 import mongoose, { Schema, ObjectId } from 'mongoose';
 
 export interface IAirport extends mongoose.Document {
+  _id: string;
   airportName: string;
   avatar: string;
   city: ObjectId;
@@ -19,6 +20,7 @@ const airportSchema = new mongoose.Schema<IAirport>(
     city: {
       type: Schema.Types.ObjectId,
       ref: 'City',
+      required: [true, 'Airport must belong to a city.'],
     },
 
     coverImages: [
