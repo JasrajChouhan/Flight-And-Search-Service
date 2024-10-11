@@ -12,7 +12,7 @@ const port = Number(getEnv('PORT')) || 4000;
 
 //-----------------whole app middleware layer------------------
 
-appMiddleware(app)
+appMiddleware(app);
 
 //---------------------------------------------------------------
 

@@ -20,7 +20,7 @@ async function dbConnection() {
     mongoose.connection.on('error', error => {
       console.log(`MongoDB connection error`, error);
     });
-  } catch (error : any) {
+  } catch (error: any) {
     console.error('Error while connecting to MongoDB:', error.message);
     process.exit(1);
   }
