@@ -1,9 +1,10 @@
 import express, { Request, Response } from 'express';
 
 import { getEnv } from './env';
+import dbConnection from './db/databaseConnection';
 
 const app = express();
-
+dbConnection();
 const port = Number(getEnv('PORT')) || 4000;
 
 app.get('/', (req: Request, res: Response) => {

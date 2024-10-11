@@ -4,6 +4,7 @@ dotenv.config();
 export type Enviroment = {
   NODE_ENV: 'development' | 'production';
   PORT: string;
+  MONGO_DB_URI: string;
 };
 
 export function getEnv<K extends keyof Enviroment>(key: K, fallback?: Enviroment[K]): Enviroment[K] {
